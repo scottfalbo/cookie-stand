@@ -1,7 +1,18 @@
 body {
   margin: auto;
+  text-align: center;
+  width: 960px;
 }
 
+header > ul > li {
+  display: inline-block;
+  padding: 5px;
+}
+
+main {
+  background-color: lightgray;
+  padding: 25px;
+}
 
 #stores > div {
   display: inline-block;
