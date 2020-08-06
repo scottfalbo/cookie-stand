@@ -1,6 +1,7 @@
 'use strict';
 
 var seattle = {
+  name: 'Seattle Cookie Shop',
   minCust: 23,
   maxCust: 65,
   avgSale: 6.3,
@@ -26,5 +27,23 @@ var seattle = {
   }
 };
 
+//get the element
+var section = document.getElementById('stores');
+// add a <div> that will hold the other info
+var divEl = document.createElement('div');
+section.append(divEl);
 
-//display the array in the browser
+// puts an h3 heading with the object name and creates a list in the div
+var h3El = document.createElement('h3');
+h3El = seattle.name;
+var ulEl = document.createElement('ul');
+divEl.append(h3El);
+divEl.append(ulEl);
+
+// add the li elements to the ul
+var liEl = document.createElement('li');
+var cookieOutput = seattle.cookiesPerHour();
+for (var i = 0; i < (seattle.closeTime-seattle.openTime); i++){
+  liEl = `${cookieOutput[0][i]}: ${cookieOutput[1][i]} cookies.`;
+  ulEl.append(liEl);
+}
