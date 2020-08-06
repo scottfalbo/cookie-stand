@@ -139,9 +139,9 @@ var locations = [seattle, toyko, dubai, paris, lima];
 // The outer for loop runs through the location array, the inner loops runs through the cookies per hour method of each object
 //get the element
 var section = document.getElementById('stores');
-
+var total;
 for (var j =0; j < locations.length; j++){
-
+  total = 0;
   // add a <div> that will hold the other info
   var divEl = document.createElement('div');
   section.append(divEl);
@@ -162,7 +162,12 @@ for (var j =0; j < locations.length; j++){
     outPutString = `${formatTime(cookieOutput[0][i])}: ${cookieOutput[1][i]} cookies.`;
     liEl.appendChild(document.createTextNode(outPutString));
     ulEl.appendChild(liEl);
+    total = total + Number(cookieOutput[1][i]);
+    console.log(total);
   }
+  liEl = document.createElement('li');
+  liEl.appendChild(document.createTextNode(`Total Sold: ${total}.`));
+  ulEl.appendChild(liEl);
 }
 
 function formatTime(input){

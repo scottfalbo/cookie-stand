@@ -26,10 +26,15 @@ main {
 }
 
 #stores > div > h3 {
-  background-color: lightgray;
+  background-color: lightblue;
   padding: 4px;
 }
 
 #stores > div > ul > li {
-  padding: 2px;
+  padding: 3px;
+  text-align: left;
+}
+
+#stores > div > ul > li:last-child {
+  background-color: lightblue;
 }
