@@ -132,11 +132,11 @@ var lima = {
     return [hour, perHour];
   }
 };
-
+// create an array to hold all of the objects so they can be called dynamically
 var locations = [seattle, toyko, dubai, paris, lima];
 //----- end of object creation
 
-
+// The outer for loop runs through the location array, the inner loops runs through the cookies per hour method of each object
 //get the element
 var section = document.getElementById('stores');
 
@@ -148,9 +148,9 @@ for (var j =0; j < locations.length; j++){
 
   // puts an h3 heading with the object name and creates a list in the div
   var h3El = document.createElement('h3');
-  h3El = locations[j].name;
+  h3El.appendChild(document.createTextNode(locations[j].name));
   var ulEl = document.createElement('ul');
-  divEl.append(h3El);
+  divEl.appendChild(h3El);
   divEl.append(ulEl);
 
   // add the li elements to the ul
