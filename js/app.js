@@ -159,8 +159,16 @@ for (var j =0; j < locations.length; j++){
   var outPutString;
   for (var i = 0; i < (locations[j].closeTime-locations[j].openTime); i++){
     liEl = document.createElement('li');
-    outPutString = `${cookieOutput[0][i]}: ${cookieOutput[1][i]} cookies.`;
+    outPutString = `${formatTime(cookieOutput[0][i])}: ${cookieOutput[1][i]} cookies.`;
     liEl.appendChild(document.createTextNode(outPutString));
     ulEl.appendChild(liEl);
+  }
+}
+
+function formatTime(input){
+  if (input < 13){
+    return `${input}am`;
+  } else {
+    return `${input-12}pm`;
   }
 }
