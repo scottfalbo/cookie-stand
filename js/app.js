@@ -7,7 +7,7 @@ function randomNumber(){
 // Each location object
 // Seattle Store
 var seattle = {
-  name: 'Seattle Cookie Shop',
+  name: 'Seattle Store',
   minCust: 23,
   maxCust: 65,
   avgSale: 6.3,
@@ -34,7 +34,7 @@ var seattle = {
 };
 // Tokyo Store
 var toyko = {
-  name: 'Tokyo Cookie Shop',
+  name: 'Tokyo Store',
   minCust: 3,
   maxCust: 24,
   avgSale: 1.2,
@@ -59,7 +59,7 @@ var toyko = {
 };
 // Dubai Store
 var dubai = {
-  name: 'Dubai Cookie Shop',
+  name: 'Dubai Store',
   minCust: 11,
   maxCust: 38,
   avgSale: 3.7,
@@ -84,7 +84,7 @@ var dubai = {
 };
 // Paris Store
 var paris = {
-  name: 'Paris Cookie Shop',
+  name: 'Paris Store',
   minCust: 20,
   maxCust: 38,
   avgSale: 2.3,
@@ -109,7 +109,7 @@ var paris = {
 };
 // Lima Store
 var lima = {
-  name: 'Lima Cookie Shop',
+  name: 'Lima Store',
   minCust: 2,
   maxCust: 16,
   avgSale: 4.6,
