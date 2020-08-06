@@ -42,8 +42,11 @@ divEl.append(ulEl);
 
 // add the li elements to the ul
 var liEl = document.createElement('li');
-var cookieOutput = seattle.cookiesPerHour();
-for (var i = 0; i < (seattle.closeTime-seattle.openTime); i++){
-  liEl = `${cookieOutput[0][i]}: ${cookieOutput[1][i]} cookies.`;
-  ulEl.append(liEl);
-}
+liEl.appendChild(document.createTextNode('test'));
+ulEl.appendChild(liEl);
+// var cookieOutput = seattle.cookiesPerHour();
+
+// for (var i = 0; i < (seattle.closeTime-seattle.openTime); i++){
+//   liEl = `${cookieOutput[0][i]}: ${cookieOutput[1][i]} cookies.`;
+//   ulEl.append(liEl);
+// }
