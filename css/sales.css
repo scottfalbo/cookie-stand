@@ -1,17 +1,68 @@
+html {
+  background-color: lightsalmon;
+}
+
 body {
   margin: auto;
   text-align: center;
   width: 960px;
 }
 
+header {
+  width: 960px;
+  background-color: lightblue;
+  height: 100px;
+  margin-top: 10px;
+  border: 2px solid darkblue;
+  border-radius: 25px;
+}
+h1 {
+  font-size: xx-large;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  position: relative;
+  bottom: 55px;
+}
+
+#left-logo {
+  width: 200px;
+  position: relative;
+  right: 370px;
+  top: 15px;
+}
+#right-logo {
+  transform: scaleX(-1);
+  width: 200px;
+  position: relative;
+  left: 370px;
+  bottom: 80px;
+}
+header > ul {
+  position: relative;
+  bottom: 105px;
+}
+
 header > ul > li {
   display: inline-block;
-  padding: 5px;
+  background-color: white;
+  padding: 8px;
+  margin: 0px 3px 0px 3px;
+  border: 1px solid darkblue;
+  border-radius: 25px;
+  /* width: 90px; */
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+header > ul > li > a {
+  text-decoration: none;
 }
 
 main {
-  background-color: lightgray;
+  margin-top: 15px;
+  background-color: lightcyan;
+  border: 2px solid darkblue;
+  border-radius: 25px;
   padding: 25px;
+
 }
 
 #stores > div {

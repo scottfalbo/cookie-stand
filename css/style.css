@@ -17,29 +17,40 @@ h1 {
   font-size: xx-large;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   position: relative;
-  bottom: 50px;
+  bottom: 55px;
 }
 
 #left-logo {
   width: 200px;
   position: relative;
-  right: 340px;
+  right: 370px;
   top: 15px;
 }
 #right-logo {
   transform: scaleX(-1);
   width: 200px;
   position: relative;
-  left: 340px;
+  left: 370px;
   bottom: 80px;
 }
 header > ul {
   position: relative;
-  bottom: 95px;
+  bottom: 105px;
 }
 
 header > ul > li {
   display: inline-block;
+  background-color: white;
+  padding: 8px;
+  margin: 0px 3px 0px 3px;
+  border: 1px solid darkblue;
+  border-radius: 25px;
+  /* width: 90px; */
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+header > ul > li > a {
+  text-decoration: none;
 }
 
 main {
