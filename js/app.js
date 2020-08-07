@@ -1,8 +1,8 @@
 'use strict';
 
 // random number generator
-function randomNumber(){
-  return Math.floor(Math.random() * 101);
+function randomNumber(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 // Each location object
 // Seattle Store
@@ -13,20 +13,11 @@ var seattle = {
   avgSale: 6.3,
   openTime: 6,
   closeTime: 20,
-  // generates a random number of customers within the min, max range
-  custPerHour: function(){
-    var custPer = randomNumber();
-    while (custPer < this.minCust || custPer > this.maxCust){
-      custPer = randomNumber();
-    }
-    return custPer;
-  },
-  // returns an array with two arrays inside.  The inner arrays hold the hour of the day and the number of cookies sold in related index ids
   cookiesPerHour: function(){
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (this.custPerHour() * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -40,18 +31,11 @@ var toyko = {
   avgSale: 1.2,
   openTime: 6,
   closeTime: 20,
-  custPerHour: function(){
-    var custPer = randomNumber();
-    while (custPer < this.minCust || custPer > this.maxCust){
-      custPer = randomNumber();
-    }
-    return custPer;
-  },
   cookiesPerHour: function(){
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (this.custPerHour() * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -65,18 +49,11 @@ var dubai = {
   avgSale: 3.7,
   openTime: 6,
   closeTime: 20,
-  custPerHour: function(){
-    var custPer = randomNumber();
-    while (custPer < this.minCust || custPer > this.maxCust){
-      custPer = randomNumber();
-    }
-    return custPer;
-  },
   cookiesPerHour: function(){
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (this.custPerHour() * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -90,18 +67,11 @@ var paris = {
   avgSale: 2.3,
   openTime: 6,
   closeTime: 20,
-  custPerHour: function(){
-    var custPer = randomNumber();
-    while (custPer < this.minCust || custPer > this.maxCust){
-      custPer = randomNumber();
-    }
-    return custPer;
-  },
   cookiesPerHour: function(){
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (this.custPerHour() * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -115,18 +85,11 @@ var lima = {
   avgSale: 4.6,
   openTime: 6,
   closeTime: 20,
-  custPerHour: function(){
-    var custPer = randomNumber();
-    while (custPer < this.minCust || custPer > this.maxCust){
-      custPer = randomNumber();
-    }
-    return custPer;
-  },
   cookiesPerHour: function(){
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (this.custPerHour() * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -163,13 +126,12 @@ for (var j =0; j < locations.length; j++){
     liEl.appendChild(document.createTextNode(outPutString));
     ulEl.appendChild(liEl);
     total = total + Number(cookieOutput[1][i]);
-    console.log(total);
   }
   liEl = document.createElement('li');
   liEl.appendChild(document.createTextNode(`Total Sold: ${total}.`));
   ulEl.appendChild(liEl);
 }
-
+// takes the 24 hour value and makes it am or pm
 function formatTime(input){
   if (input < 13){
     return `${input}am`;

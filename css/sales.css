@@ -23,6 +23,7 @@ main {
 
 #stores > div > ul {
   background-color: white;
+  width: 150px;
 }
 
 #stores > div > h3 {
