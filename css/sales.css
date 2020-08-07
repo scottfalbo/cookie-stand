@@ -1,11 +1,11 @@
 html {
-  background-color: lightseagreen;
+  background-color: lightsalmon;
 }
 
 body {
   margin: auto;
-  width: 960px;
   text-align: center;
+  width: 960px;
 }
 
 header {
@@ -62,15 +62,44 @@ main {
   border: 2px solid darkblue;
   border-radius: 25px;
   padding: 25px;
+
 }
 
-main > p {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: large;
+#stores > p {
+  width: 300px;
+  margin: 0px auto 10px auto;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid darkblue;
+  border-radius: 25px;
+  font-size: larger;
+  font-variant: small-caps;
 }
 
-main > p:nth-child(2) {
-  margin-top: 20px;
+#stores > div {
+  display: inline-block;
+  margin: auto;
+  padding: 10px;
+  background-color: black;
+}
+
+#stores > div > ul {
+  background-color: white;
+  width: 150px;
+}
+
+#stores > div > h3 {
+  background-color: lightblue;
+  padding: 4px;
+}
+
+#stores > div > ul > li {
+  padding: 3px;
+  text-align: left;
+}
+
+#stores > div > ul > li:last-child {
+  background-color: lightblue;
 }
 
 footer {
