@@ -125,7 +125,7 @@ for (var j =0; j < locations.length; j++){
     outPutString = `${formatTime(cookieOutput[0][i])}: ${cookieOutput[1][i]} cookies.`;
     liEl.appendChild(document.createTextNode(outPutString));
     ulEl.appendChild(liEl);
-    total = total + Number(cookieOutput[1][i]);
+    total += Number(cookieOutput[1][i]);
   }
   liEl = document.createElement('li');
   liEl.appendChild(document.createTextNode(`Total Sold: ${total}.`));
