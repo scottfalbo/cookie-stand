@@ -17,7 +17,7 @@ var seattle = {
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -35,7 +35,7 @@ var toyko = {
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -53,7 +53,7 @@ var dubai = {
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -71,7 +71,7 @@ var paris = {
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -89,7 +89,7 @@ var lima = {
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = (randomNumber(this.minCust, this.maxCust) * this.avgSale).toFixed(0);
+      perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
       hour[i - this.openTime] = i;
     }
     return [hour, perHour];
@@ -125,7 +125,7 @@ for (var j =0; j < locations.length; j++){
     outPutString = `${formatTime(cookieOutput[0][i])}: ${cookieOutput[1][i]} cookies.`;
     liEl.appendChild(document.createTextNode(outPutString));
     ulEl.appendChild(liEl);
-    total += Number(cookieOutput[1][i]);
+    total += cookieOutput[1][i];
   }
   liEl = document.createElement('li');
   liEl.appendChild(document.createTextNode(`Total Sold: ${total}.`));
