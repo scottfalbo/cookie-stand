@@ -12,15 +12,34 @@ function StoreMaker(name, minCust, maxCust, avgSale, openTime, closeTime) {
   this.avgSale = avgSale;
   this.openTime = openTime;
   this.closeTime = closeTime;
+  this.cookiesPerHour = [];
+  this.totalCookies = 0;
 
-  this.cookiesPerHour = function(){
+  this.cookiesSalesPerHour = function(){
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
       perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
       hour[i - this.openTime] = i;
+      this.totalCookies += perHour[i-this.openTime];
     }
+    this.cookiesPerHour = [hour, perHour];
     return [hour, perHour];
+  };
+  this.writeStoreName = function(){
+    // do stuff
+  };
+  this.writeCookieSales = function(){
+    // do stuff
+  };
+  this.writeTotalsFooter = function(){
+    // do stuff
+  };
+  this.controlCurve = function(){
+    // apply a control curve based on % of customers per hour
+  };
+  this.staffing = function(){
+    // figure out how many workers are needed each hour based on number of sales
   };
 }
 
@@ -38,9 +57,7 @@ var locations = [seattle, tokyo, dubai, paris, lima];
 // The outer for loop runs through the location array, the inner loops runs through the cookies per hour method of each object
 //get the element
 var section = document.getElementById('stores');
-var total;
 for (var j =0; j < locations.length; j++){
-  total = 0;
   // add a <div> that will hold the other info
   var divEl = document.createElement('div');
   section.append(divEl);
@@ -54,17 +71,16 @@ for (var j =0; j < locations.length; j++){
 
   // add the li elements to the ul
   var liEl;
-  var cookieOutput = locations[j].cookiesPerHour();
+  var cookieOutput = locations[j].cookiesSalesPerHour();
   var outPutString;
   for (var i = 0; i < (locations[j].closeTime-locations[j].openTime); i++){
     liEl = document.createElement('li');
     outPutString = `${formatTime(cookieOutput[0][i])}: ${cookieOutput[1][i]} cookies.`;
     liEl.appendChild(document.createTextNode(outPutString));
     ulEl.appendChild(liEl);
-    total += cookieOutput[1][i];
   }
   liEl = document.createElement('li');
-  liEl.appendChild(document.createTextNode(`Total Sold: ${total}.`));
+  liEl.appendChild(document.createTextNode(`Total Sold: ${locations[j].totalCookies}.`));
   ulEl.appendChild(liEl);
 }
 // takes the 24 hour value and makes it am or pm
