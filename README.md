@@ -32,7 +32,6 @@
 
 
 ## Cookie Stand v1.1
-*August 7th, 2020*
 
 ### Tasks
 + Replace the object literals with a constructor function.
@@ -47,5 +46,7 @@
   + Calculate how many workers are needed at each location each hour.
 + Apply a control curve to the projected sales numbers to reflect daily ebb and flow based on Pat's research.
 
-
+*August 7, 2020*
++ I implemented a constructor function and removed all of the object literals.
++ 
 
