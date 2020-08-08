@@ -28,11 +28,11 @@
     <section>
       <p>Salmon Cookie Sales Per Hour</p>
       <table id="storeOutput"></table>
-      <!-- <p>Adjusted Curve Control Cookie Sales Per Hour</p> -->
+      <p>Adjusted Curve Control Cookie Sales Per Hour</p>
       <table id="curveCookieOutput"></table>
       <p>Required Workers per hour</p>
       <table id="workersPerHour"></table>
-      <!-- <p>Adjusted Curve Control Workers Per Hour</p> -->
+      <p>Adjusted Curve Control Workers Per Hour</p>
       <table id="curveWorkerOutput"></table>
     </section>
   </main>
@@ -40,7 +40,8 @@
     <p>&copy; 2020, Pat's Salmon Cookies</p>
   </footer>
   <script src="js/app.js"></script>
-  <script>writeToPage();</script>
+  <script>writeToPage('storeOutput', 'workersPerHour');</script>
+  <script>writeToPage('curveCookieOutput', 'curveWorkerOutput');</script>
 </body>
 
 </html>
