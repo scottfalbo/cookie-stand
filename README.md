@@ -31,3 +31,21 @@
   + A second `for` loop was nested in the first to iterate through the `hour` and `perHour` arrays from the object methods to put each set of values into an `<ul>`.
 
 
+## Cookie Stand v1.1
+*August 7th, 2020*
+
+### Tasks
++ Replace the object literals with a constructor function.
++ Replace the `<ul>` with a table.
++ Each object should have its own method to append the DOM.
+  + The header and footer row should be their own methods
++ **Stretch Goals**
++ Keep working on the public facing style
+  + Use a second table to manage staffing using this info:
+    + A single worker can can serve 20 customers/hr.  
+    + Each location should have a minimum of two workers at all times.
+  + Calculate how many workers are needed at each location each hour.
++ Apply a control curve to the projected sales numbers to reflect daily ebb and flow based on Pat's research.
+
+
+
