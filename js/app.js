@@ -4,107 +4,60 @@
 function randomNumber(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-// Each location object
-// Seattle Store
-var seattle = {
-  name: 'Seattle Store',
-  minCust: 23,
-  maxCust: 65,
-  avgSale: 6.3,
-  openTime: 6,
-  closeTime: 20,
-  cookiesPerHour: function(){
+// constructor function used to create an object for each store.
+function StoreMaker(name, minCust, maxCust, avgSale, openTime, closeTime) {
+  this.name = name;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgSale = avgSale;
+  this.openTime = openTime;
+  this.closeTime = closeTime;
+  this.cookiesPerHour = [];
+  this.totalCookies = 0;
+
+  this.cookiesSalesPerHour = function(){
     var perHour = [];
     var hour = [];
     for (var i = this.openTime; i < this.closeTime; i++){
       perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
       hour[i - this.openTime] = i;
+      this.totalCookies += perHour[i-this.openTime];
     }
+    this.cookiesPerHour = [hour, perHour];
     return [hour, perHour];
-  }
-};
-// Tokyo Store
-var toyko = {
-  name: 'Tokyo Store',
-  minCust: 3,
-  maxCust: 24,
-  avgSale: 1.2,
-  openTime: 6,
-  closeTime: 20,
-  cookiesPerHour: function(){
-    var perHour = [];
-    var hour = [];
-    for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
-      hour[i - this.openTime] = i;
-    }
-    return [hour, perHour];
-  }
-};
-// Dubai Store
-var dubai = {
-  name: 'Dubai Store',
-  minCust: 11,
-  maxCust: 38,
-  avgSale: 3.7,
-  openTime: 6,
-  closeTime: 20,
-  cookiesPerHour: function(){
-    var perHour = [];
-    var hour = [];
-    for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
-      hour[i - this.openTime] = i;
-    }
-    return [hour, perHour];
-  }
-};
-// Paris Store
-var paris = {
-  name: 'Paris Store',
-  minCust: 20,
-  maxCust: 38,
-  avgSale: 2.3,
-  openTime: 6,
-  closeTime: 20,
-  cookiesPerHour: function(){
-    var perHour = [];
-    var hour = [];
-    for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
-      hour[i - this.openTime] = i;
-    }
-    return [hour, perHour];
-  }
-};
-// Lima Store
-var lima = {
-  name: 'Lima Store',
-  minCust: 2,
-  maxCust: 16,
-  avgSale: 4.6,
-  openTime: 6,
-  closeTime: 20,
-  cookiesPerHour: function(){
-    var perHour = [];
-    var hour = [];
-    for (var i = this.openTime; i < this.closeTime; i++){
-      perHour[i - this.openTime] = Math.ceil(randomNumber(this.minCust, this.maxCust) * this.avgSale);
-      hour[i - this.openTime] = i;
-    }
-    return [hour, perHour];
-  }
-};
+  };
+  this.writeStoreName = function(){
+    // do stuff
+  };
+  this.writeCookieSales = function(){
+    // do stuff
+  };
+  this.writeTotalsFooter = function(){
+    // do stuff
+  };
+  this.controlCurve = function(){
+    // apply a control curve based on % of customers per hour
+  };
+  this.staffing = function(){
+    // figure out how many workers are needed each hour based on number of sales
+  };
+}
+
+var seattle = new StoreMaker('Seattle Store', 23, 65, 6.3, 6, 20);
+var tokyo = new StoreMaker('Tokyo Store', 3, 24, 1.2, 6, 20);
+var dubai = new StoreMaker('Dubai Store', 11, 38, 3.7, 6, 20);
+var paris = new StoreMaker('Paris Store', 20, 38, 2.3, 6, 20);
+var lima = new StoreMaker('Lima Store', 2, 16, 4.6, 6, 20);
+
+
 // create an array to hold all of the objects so they can be called dynamically
-var locations = [seattle, toyko, dubai, paris, lima];
+var locations = [seattle, tokyo, dubai, paris, lima];
 //----- end of object creation
 
 // The outer for loop runs through the location array, the inner loops runs through the cookies per hour method of each object
 //get the element
 var section = document.getElementById('stores');
-var total;
 for (var j =0; j < locations.length; j++){
-  total = 0;
   // add a <div> that will hold the other info
   var divEl = document.createElement('div');
   section.append(divEl);
@@ -118,17 +71,16 @@ for (var j =0; j < locations.length; j++){
 
   // add the li elements to the ul
   var liEl;
-  var cookieOutput = locations[j].cookiesPerHour();
+  var cookieOutput = locations[j].cookiesSalesPerHour();
   var outPutString;
   for (var i = 0; i < (locations[j].closeTime-locations[j].openTime); i++){
     liEl = document.createElement('li');
     outPutString = `${formatTime(cookieOutput[0][i])}: ${cookieOutput[1][i]} cookies.`;
     liEl.appendChild(document.createTextNode(outPutString));
     ulEl.appendChild(liEl);
-    total += cookieOutput[1][i];
   }
   liEl = document.createElement('li');
-  liEl.appendChild(document.createTextNode(`Total Sold: ${total}.`));
+  liEl.appendChild(document.createTextNode(`Total Sold: ${locations[j].totalCookies}.`));
   ulEl.appendChild(liEl);
 }
 // takes the 24 hour value and makes it am or pm
