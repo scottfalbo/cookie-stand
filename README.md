@@ -48,5 +48,10 @@
 
 *August 7, 2020*
 + I implemented a constructor function and removed all of the object literals.
-+ 
++ The code feels clunky but I got everything writing to the table.
+  + I used a function to print the first row of times.
+  + a method of each store to print the daily sales.
+  + and a function to print the last row of added up totals
+  + there is a main function that calls them all
+
 
