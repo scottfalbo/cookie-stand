@@ -58,3 +58,4 @@
 + Styled my tables to make them readable.
 + added a method that calculates number of employees needed per hour and sent the information to a table.
 + Removed the methods from the constructor function and declared them using `.prototype`.
++ Got the curve method working.  Recycled the methods and functions by passing in a parameter of an element ID.

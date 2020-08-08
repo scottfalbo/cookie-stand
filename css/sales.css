@@ -76,48 +76,25 @@ main > section > p {
   font-variant: small-caps;
 }
 
-#storeOutput {
+table {
   margin: 25px auto;
   background-color: white;
   border: 2px solid seagreen;
 }
 
-#storeOutput > tr:nth-child(even) {
+table > tr:nth-child(even) {
   background-color:#e6fff2;
 }
 
-#storeOutput > tr > td {
+table > tr > td {
   width: 45px;
   padding: 3px;
   border: 1px solid lightseagreen;
 }
-#storeOutput > tr > th {
+table > tr > th {
   padding: 3px;
   text-align: left;
   vertical-align: bottom;
-}
-
-#workersPerHour > tr:nth-child(even) {
-  background-color:#e6fff2;
-}
-
-#workersPerHour > tr > td {
-  width: 45px;
-  padding: 3px;
-  border: 1px solid lightseagreen;
-}
-#workersPerHour > tr > th {
-  padding: 3px;
-  text-align: left;
-  vertical-align: bottom;
-}
-#workersPerHour {
-  margin: 25px auto;
-  background-color: white;
-  border: 2px solid seagreen;
-}
-#workersPerHour > tr:first-child > td {
-  padding: 3px;
 }
 
 footer {

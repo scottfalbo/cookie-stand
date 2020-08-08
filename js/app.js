@@ -22,14 +22,16 @@ StoreMaker.prototype.cookiesSalesPerHour = function(){
     this.totalCookies += this.cookiesPerHour[i];
   }
 };
-StoreMaker.prototype.writeCookieSales = function(){
-  var tableEl = document.getElementById('storeOutput');
+StoreMaker.prototype.writeCookieSales = function(tableOne){
+  var tableEl = document.getElementById(tableOne);
   var trEl = document.createElement('tr');
   tableEl.append(trEl);
   var thEl = document.createElement('th');
   thEl.textContent = this.name;
   trEl.append(thEl);
-  this.cookiesSalesPerHour();
+  if (tableOne === 'storeOutput'){
+    this.cookiesSalesPerHour();
+  }
   for (var i = 0; i < this.cookiesPerHour.length; i++){
     var tdEl = document.createElement('td');
     tdEl.textContent = this.cookiesPerHour[i];
@@ -43,16 +45,14 @@ StoreMaker.prototype.controlCurve = function(){
   var curve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4];
   this.totalCookies = 0;
   for (var i = 0; i < curve.length; i++){
-    // this.cookiesPerHour[i] *= Math.ceil(curve[i]);
-    // this.workersPerHour[i] *= Math.ceil(curve[i]);
     this.workersPerHour[i] = Math.ceil(this.workersPerHour[i]);
     this.cookiesPerHour[i] = Math.ceil(this.cookiesPerHour[i]*curve[i]);
-    console.log(this.cookiesPerHour[i]);
-    // this.totalCookies += this.cookiesPerHour[i];
+    // console.log(this.cookiesPerHour[i]);
   }
 };
-StoreMaker.prototype.staffing = function(){
-  var tableEl = document.getElementById('workersPerHour');
+
+StoreMaker.prototype.staffing = function(tableTwo){
+  var tableEl = document.getElementById(tableTwo);
   var trEl = document.createElement('tr');
   tableEl.append(trEl);
   var thEl = document.createElement('th');
@@ -78,17 +78,22 @@ var lima = new StoreMaker('Lima Store', 2, 16, 4.6);
 
 var locations = [seattle, tokyo, dubai, paris, lima];
 
-function writeToPage(){
-  writeTimes();
-  for (var i = 0; i < locations.length; i++){
-    locations[i].writeCookieSales();
-    locations[i].staffing();
+function writeToPage(tableOne, tableTwo){
+  writeTimes(tableOne, tableTwo);
+  if (tableOne === 'curveCookieOutput'){
+    for (var k = 0; k < locations.length; k++){
+      locations[k].controlCurve();
+    }
   }
-  totalTotals();
+  for (var i = 0; i < locations.length; i++){
+    locations[i].writeCookieSales(tableOne);
+    locations[i].staffing(tableTwo);
+  }
+  totalTotals(tableOne);
 }
 
-function totalTotals (){
-  var tableEl = document.getElementById('storeOutput');
+function totalTotals (tableOne){
+  var tableEl = document.getElementById(tableOne);
   var trEl = document.createElement('tr');
   tableEl.append(trEl);
   var thEl = document.createElement('th');
@@ -116,8 +121,8 @@ function totalTotals (){
   trEl.appendChild(tdEl);
 }
 
-function writeTimes(){
-  var tableEl = document.getElementById('storeOutput');
+function writeTimes(tableOne, tableTwo){
+  var tableEl = document.getElementById(tableOne);
   var trEl = document.createElement('tr');
   tableEl.append(trEl);
   var thEl = document.createElement('th');
@@ -132,7 +137,7 @@ function writeTimes(){
   thEl.textContent = 'Daily Total';
   trEl.appendChild(thEl);
   //--
-  tableEl = document.getElementById('workersPerHour');
+  tableEl = document.getElementById(tableTwo);
   trEl = document.createElement('tr');
   tableEl.append(trEl);
   thEl = document.createElement('th');
