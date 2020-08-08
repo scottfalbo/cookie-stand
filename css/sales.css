@@ -94,6 +94,7 @@ main > section > p {
 #storeOutput > tr > th {
   padding: 3px;
   text-align: left;
+  vertical-align: bottom;
 }
 
 footer {
