@@ -54,4 +54,7 @@
   + and a function to print the last row of added up totals
   + there is a main function that calls them all
 
+*August 8, 2020*
++ Styled my tables to make them readable.
++ added a method that calculates number of employees needed per hour and sent the information to a table.
 

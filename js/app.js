@@ -40,8 +40,13 @@ function StoreMaker(name, minCust, maxCust, avgSale) {
     trEl.appendChild(tdEl);
   };
   this.controlCurve = function(){
-    var curve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
-    // apply a control curve based on % of customers per hour
+    var curve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4];
+    this.totalCookies = 0;
+    for (var i = 0; i < curve.length; i++){
+      this.cookiesPerHour[i] *= Math.ceil(curve[i]);
+      this.workersPerHour[i] *= Math.ceil(curve[i]);
+      this.totalCookies += this.cookiesPerHour[i];
+    }
   };
   this.staffing = function(){
     var tableEl = document.getElementById('workersPerHour');
@@ -71,6 +76,14 @@ var lima = new StoreMaker('Lima Store', 2, 16, 4.6);
 var locations = [seattle, tokyo, dubai, paris, lima];
 
 function writeToPage(){
+  writeTimes();
+  for (var i = 0; i < locations.length; i++){
+    locations[i].writeCookieSales();
+    locations[i].staffing();
+  }
+  totalTotals();
+}
+function curveWrite(){
   writeTimes();
   for (var i = 0; i < locations.length; i++){
     locations[i].writeCookieSales();
