@@ -47,6 +47,7 @@ StoreMaker.prototype.controlCurve = function(){
   for (var i = 0; i < curve.length; i++){
     this.workersPerHour[i] = Math.ceil(this.workersPerHour[i]*curve[i]);
     this.cookiesPerHour[i] = Math.ceil(this.cookiesPerHour[i]*curve[i]);
+    this.totalCookies += this.cookiesPerHour[i];
     // console.log(this.cookiesPerHour[i]);
   }
 };
@@ -78,7 +79,7 @@ var lima = new StoreMaker('Lima', 2, 16, 4.6);
 
 var locations = [seattle, tokyo, dubai, paris, lima];
 
-function writeToPage(tableOne, tableTwo){
+function writeToPage(tableOne, tableTwo){  // eslint-disable-line 
   writeTimes(tableOne, tableTwo);
   if (tableOne === 'curveCookieOutput'){
     for (var k = 0; k < locations.length; k++){
