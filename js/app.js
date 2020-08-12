@@ -45,7 +45,7 @@ StoreMaker.prototype.controlCurve = function(){
   var curve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4];
   this.totalCookies = 0;
   for (var i = 0; i < curve.length; i++){
-    this.workersPerHour[i] = Math.ceil(this.workersPerHour[i]);
+    this.workersPerHour[i] = Math.ceil(this.workersPerHour[i]*curve[i]);
     this.cookiesPerHour[i] = Math.ceil(this.cookiesPerHour[i]*curve[i]);
     // console.log(this.cookiesPerHour[i]);
   }
@@ -70,11 +70,11 @@ StoreMaker.prototype.staffing = function(tableTwo){
 };
 
 
-var seattle = new StoreMaker('Seattle Store', 23, 65, 6.3);
-var tokyo = new StoreMaker('Tokyo Store', 3, 24, 1.2);
-var dubai = new StoreMaker('Dubai Store', 11, 38, 3.7);
-var paris = new StoreMaker('Paris Store', 20, 38, 2.3);
-var lima = new StoreMaker('Lima Store', 2, 16, 4.6);
+var seattle = new StoreMaker('Seattle', 23, 65, 6.3);
+var tokyo = new StoreMaker('Tokyo', 3, 24, 1.2);
+var dubai = new StoreMaker('Dubai', 11, 38, 3.7);
+var paris = new StoreMaker('Paris', 20, 38, 2.3);
+var lima = new StoreMaker('Lima', 2, 16, 4.6);
 
 var locations = [seattle, tokyo, dubai, paris, lima];
 

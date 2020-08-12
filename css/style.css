@@ -1,7 +1,7 @@
 html {
   background-color: lightseagreen;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
 body {
   margin: auto;
   width: 960px;
@@ -22,7 +22,6 @@ h1 {
   position: relative;
   bottom: 55px;
 }
-
 #left-logo {
   width: 200px;
   position: relative;
@@ -40,7 +39,6 @@ header > nav > ul {
   position: relative;
   bottom: 105px;
 }
-
 header > nav > ul > li {
   display: inline-block;
   background-color: white;
@@ -48,35 +46,84 @@ header > nav > ul > li {
   margin: 0px 3px 0px 3px;
   border: 1px solid darkblue;
   border-radius: 25px;
-  /* width: 90px; */
-  font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
 header > nav > ul > li > a {
   text-decoration: none;
 }
 
 main {
   margin-top: 15px;
-  background-color: lightcyan;
-  border: 2px solid darkblue;
-  border-radius: 25px;
   padding: 25px;
 }
-
 main > p {
-  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: large;
+  background-color: lightcyan;
+  padding: 15px;
+  border: 1px solid darkblue;
+  border-radius: 20px;
 }
-
 main > p:nth-child(2) {
   margin-top: 20px;
 }
+section {
+  margin: 15px auto 0 auto;
+  width: 900px;
+  height: 360px;
+}
+section > figure > img {
+  position: relative;
+  right: 160px;
+  border: 1px solid darkblue;
+  border-radius: 15px;
+  height: 250px;
+}
+figcaption {
+  background-color: lightcyan;
+  width: 400px;
+  border: 1px solid darkblue;
+  border-radius: 25px;
+  padding: 10px;
+  position: relative;
+  left: 80px;
+  margin-top: 5px;
+}
+section > img {
+  position: relative;
+  left: 235px;
+  border: 1px solid darkblue;
+  border-radius: 15px;
+  height: 170px;
+  bottom: 345px;
+}
+section > p {
+  background-color: lightcyan;
+  width: 290px;
+  position: relative;
+  left: 530px;
+  bottom: 360px;
+  border: 1px solid darkblue;
+  border-radius: 25px;
+  padding: 10px;
+}
+section > p:nth-child(4) {
+  margin: 35px 0px 0px 40px;
+  width: 200px;
+}
+section > p:nth-child(4):hover {
+  background-color: lightsalmon;
+}
+section > p:nth-child(4) > a {
+  text-decoration: none;
+  font-variant: small-caps;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: x-large;
+}
 
 footer {
-  margin-top: 15px;
+  margin: 0px auto 0 auto;
   background-color: lightcyan;
   border: 2px solid darkblue;
   border-radius: 25px;
   padding: 15px;
+  width: 800px;
 }
