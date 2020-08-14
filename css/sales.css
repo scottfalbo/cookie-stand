@@ -1,3 +1,5 @@
+@import url("header.css");
+
 html {
   background-color: lightsalmon;
 }
@@ -9,39 +11,6 @@ body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-header {
-  height: 100px;
-  background-color: lightsalmon;
-}
-header nav {
-  width: 960px;
-  margin: auto;
-}
-header img {
-  height: 80px;
-  float: left;
-  margin-top: 10px;
-}
-header ul {
-  float: left;
-}
-header ul li {
-  display: inline-block;
-  background-color: lightcyan;
-  margin: 35px 36px;
-  padding: 10px;
-  width: 80px;
-  border: 1px solid darkcyan;
-  border-radius: 15px;
-}
-header ul li:first-child {
-  margin-left: 30px;
-}
-header ul li a {
-  text-decoration: none;
-  font-variant: small-caps;
-  font-size: large;
-}
 
 main {
   margin-top: 15px;
@@ -85,9 +54,18 @@ table > tr > th {
 }
 
 footer {
-  margin-top: 15px;
-  background-color: lightcyan;
-  border: 2px solid darkblue;
+  height: 60px;
+  background-color: lightsalmon;
+  clear: both;
+  padding: 10px;
+  line-height: 60px;
+}
+footer p {    
+  color: white;
+  font-size: larger;
+  text-shadow: 1px 1px black;
+  width: 300px;
+  margin: auto;
+  background-color:#e27450;
   border-radius: 25px;
-  padding: 15px;
 }
