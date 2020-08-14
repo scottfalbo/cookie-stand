@@ -69,7 +69,7 @@ StoreMaker.prototype.staffing = function(tableTwo){
     trEl.appendChild(tdEl);
   }
 };
-
+//.
 
 var seattle = new StoreMaker('Seattle', 23, 65, 6.3);
 var tokyo = new StoreMaker('Tokyo', 3, 24, 1.2);
