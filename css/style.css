@@ -1,129 +1,101 @@
-html {
-  background-color: lightseagreen;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
 body {
-  margin: auto;
-  width: 960px;
-  text-align: center;
-}
-
-header {
-  width: 960px;
-  background-color: lightblue;
-  height: 100px;
-  margin-top: 10px;
-  border: 2px solid darkblue;
-  border-radius: 25px;
-}
-h1 {
-  font-size: xx-large;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  position: relative;
-  bottom: 55px;
-}
-#left-logo {
-  width: 200px;
-  position: relative;
-  right: 370px;
-  top: 15px;
-}
-#right-logo {
-  transform: scaleX(-1);
-  width: 200px;
-  position: relative;
-  left: 370px;
-  bottom: 80px;
-}
-header > nav > ul {
-  position: relative;
-  bottom: 105px;
-}
-header > nav > ul > li {
-  display: inline-block;
-  background-color: white;
-  padding: 8px;
-  margin: 0px 3px 0px 3px;
-  border: 1px solid darkblue;
-  border-radius: 25px;
-}
-header > nav > ul > li > a {
-  text-decoration: none;
+  text-align: center;
+  background-image: url("../images/background.jpg");
+  box-sizing: border-box;
 }
 
-main {
-  margin-top: 15px;
-  padding: 25px;
-}
-main > p {
-  font-size: large;
-  background-color: lightcyan;
-  padding: 15px;
-  border: 1px solid darkblue;
-  border-radius: 20px;
-}
-main > p:nth-child(2) {
-  margin-top: 20px;
-}
-section {
-  margin: 15px auto 0 auto;
-  width: 900px;
-  height: 360px;
-}
-section > figure > img {
-  position: relative;
-  right: 160px;
-  border: 1px solid darkblue;
-  border-radius: 15px;
-  height: 250px;
-}
-figcaption {
-  background-color: lightcyan;
-  width: 400px;
-  border: 1px solid darkblue;
-  border-radius: 25px;
-  padding: 10px;
-  position: relative;
-  left: 80px;
-  margin-top: 5px;
-}
-section > img {
-  position: relative;
-  left: 235px;
-  border: 1px solid darkblue;
-  border-radius: 15px;
-  height: 170px;
-  bottom: 345px;
-}
-section > p {
-  background-color: lightcyan;
-  width: 290px;
-  position: relative;
-  left: 530px;
-  bottom: 360px;
-  border: 1px solid darkblue;
-  border-radius: 25px;
-  padding: 10px;
-}
-section > p:nth-child(4) {
-  margin: 35px 0px 0px 40px;
-  width: 200px;
-}
-section > p:nth-child(4):hover {
+/* ----------- HEADER ------------ */
+header {
+  height: 100px;
   background-color: lightsalmon;
 }
-section > p:nth-child(4) > a {
+header nav {
+  width: 960px;
+  margin: auto;
+}
+header img {
+  height: 80px;
+  float: left;
+  margin-top: 10px;
+}
+header ul {
+  float: left;
+}
+header ul li {
+  display: inline-block;
+  background-color: lightcyan;
+  margin: 35px 36px;
+  padding: 10px;
+  width: 80px;
+  border: 1px solid darkcyan;
+  border-radius: 15px;
+}
+header ul li:first-child {
+  margin-left: 30px;
+}
+header ul li a {
   text-decoration: none;
   font-variant: small-caps;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: x-large;
+  font-size: large;
 }
+/* ---------------- Main ----------------- */
+main {
+  width: 960px;
+  margin: auto;
+}
+ main section {
+   width: 300px;
+   float:left;
+  }
+  main section figure img {
+    width: 300px;
+  }
+  main section:nth-child(3) {
+    margin:0px 20px 0px 20px;
+    background-color: white;
+    border: 1px solid darkcyan;
+  }
+  main section:nth-child(4) {
+    background-color: white;
+    border: 1px solid darkcyan;
+  }
 
-footer {
-  margin: 0px auto 0 auto;
-  background-color: lightcyan;
-  border: 2px solid darkblue;
-  border-radius: 25px;
-  padding: 15px;
-  width: 800px;
-}
+ /* ----------- locations elements -------- */
+ #locations {
+   font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  #locations section {
+  background-color: white;
+  border: 1px solid darkcyan;
+  margin: 10px 0px 0px 0px;
+ }
+ #locations img {
+   float: left;
+   height: 50px;
+ }
+ #locations h3 {
+   font-size: 50px;
+ }
+ #locations address {
+   background-color: lightsalmon;
+   font-size: larger;
+   padding: 5px;
+ }
+ #locations p {
+   padding: 5px;
+ }
+ #locations a {
+   text-decoration: none;
+   color: #714b3e;
+ }
+ #locations p:nth-child(6) {
+   background-color: lightsalmon;
+ }
+ #locations h2 {
+   font-size: 25px;
+   background-color: white;
+   padding: 5px;
+   border: 1px solid darkcyan;
+   border-radius: 15px;
+ }

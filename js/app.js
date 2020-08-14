@@ -7,7 +7,7 @@ function randomNumber(min, max){
 
 var hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
 // constructor function used to create an object for each store.
-function StoreMaker(name, minCust, maxCust, avgSale) {
+function StoreMaker(name, minCust, maxCust, avgSale, storeInfo) {
   this.name = name;
   this.minCust = minCust;
   this.maxCust = maxCust;
@@ -15,6 +15,8 @@ function StoreMaker(name, minCust, maxCust, avgSale) {
   this.cookiesPerHour = [];
   this.totalCookies = 0;
   this.workersPerHour = [];
+  //storeInfo[flag, address, phone, email, link]
+  this.storeInfo = storeInfo;
 }
 StoreMaker.prototype.cookiesSalesPerHour = function(){
   for (var i = 0; i < hours.length; i++){
@@ -51,7 +53,6 @@ StoreMaker.prototype.controlCurve = function(){
     // console.log(this.cookiesPerHour[i]);
   }
 };
-
 StoreMaker.prototype.staffing = function(tableTwo){
   var tableEl = document.getElementById(tableTwo);
   var trEl = document.createElement('tr');
@@ -69,16 +70,47 @@ StoreMaker.prototype.staffing = function(tableTwo){
     trEl.appendChild(tdEl);
   }
 };
+StoreMaker.prototype.homePageLocs = function(){
+  var sectionMain = document.getElementById('locations');
+  var sectionInner = document.createElement('section');
+  sectionMain.append(sectionInner);
+  var imgFlag = document.createElement('img');
+  imgFlag.src = this.storeInfo[0];
+  sectionInner.appendChild(imgFlag);
+  var h3City = document.createElement('h3');
+  h3City.textContent = this.name;
+  sectionInner.appendChild(h3City);
+  var address = document.createElement('address');
+  address.textContent = this.storeInfo[1];
+  sectionInner.appendChild(address);
+  var phone = document.createElement('p');
+  phone.textContent = this.storeInfo[2];
+  sectionInner.appendChild(phone);
+  var emailAdd = document.createElement('p');
+  emailAdd.textContent = this.storeInfo[3];
+  sectionInner.appendChild(emailAdd);
+  var emailLink = document.createElement('a');
+  emailLink.href = this.storeInfo[4];
+  emailAdd.appendChild(emailLink);
+};
 
 
-var seattle = new StoreMaker('Seattle', 23, 65, 6.3);
-var tokyo = new StoreMaker('Tokyo', 3, 24, 1.2);
-var dubai = new StoreMaker('Dubai', 11, 38, 3.7);
-var paris = new StoreMaker('Paris', 20, 38, 2.3);
-var lima = new StoreMaker('Lima', 2, 16, 4.6);
+var seattle = new StoreMaker('Seattle', 23, 65, 6.3, ['images/flags/flag-seattle.jpg', '123 Whatever St, Seattle, WA 98105', '+1(206)555-5555', 'SeattleCookies@fish.net', 'mailto:#']);
+var tokyo = new StoreMaker('Tokyo', 3, 24, 1.2, ['images/flags/flag-tokyo.jpg', '6 Chrome 7-1 Sendagaya, Shibuya City, Tokyo, 121-0072, Japan', '+81 3-6561-4593', 'TokyoCookies@fish.net', 'mailto:#']);
+var dubai = new StoreMaker('Dubai', 11, 38, 3.7, ['images/flags/flag-dubai.jpg', 'Dubai Silicon OasisCedre Villas, Dubai - United Arab Emirates', '+971 4 666 9834', 'DubaiCookies@fish.net', 'mailto:#']);
+var paris = new StoreMaker('Paris', 20, 38, 2.3, ['images/flags/flag-paris.jpg', '75093, 103 Rue de Sevres, 75006 Paris, France', '+33 6 40 36 17 85', 'ParisCookies@fish.net', 'mailto:#']);
+var lima = new StoreMaker('Lima', 2, 16, 4.6, ['images/flags/flag-lima.jpg', 'Av. Petit Thouras 6657, Miraflores 15063, Peru', '+51 1 15670265', 'LimaCookies@fish.net', 'mailto:#']);
 
 var locations = [seattle, tokyo, dubai, paris, lima];
 
+// ----------- write homepage locs
+function homePage (){
+  for (var i = 0; i < locations.length; i++){
+    locations[i].homePageLocs();
+  }
+}
+
+// ----------- write tables
 function writeToPage(tableOne, tableTwo){  // eslint-disable-line 
   writeTimes(tableOne, tableTwo);
   if (tableOne === 'curveCookieOutput'){
