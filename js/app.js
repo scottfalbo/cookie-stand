@@ -94,9 +94,7 @@ StoreMaker.prototype.homePageLocs = function(){
   emailAdd.appendChild(emailLink);
 };
 
-var seattleAdd = '123 Whatever ST' +
-'Seattle, WA 98105';
-var seattle = new StoreMaker('Seattle', 23, 65, 6.3, ['images/flags/flag-seattle.jpg', seattleAdd, '+1(206)358-1321', 'SeattleCookies@fish.net', 'mailto:#']);
+var seattle = new StoreMaker('Seattle', 23, 65, 6.3, ['images/flags/flag-seattle.jpg', '123 Whatever ST Seattle, WA 98105', '+1(206)358-1321', 'SeattleCookies@fish.net', 'mailto:#']);
 var tokyo = new StoreMaker('Tokyo', 3, 24, 1.2, ['images/flags/flag-tokyo.jpg', '6 Chrome 7-1 Sendagaya, Shibuya City, Tokyo, 121-0072, Japan', '+81 3-6561-4593', 'TokyoCookies@fish.net', 'mailto:#']);
 var dubai = new StoreMaker('Dubai', 11, 38, 3.7, ['images/flags/flag-dubai.jpg', 'Dubai Silicon OasisCedre Villas, Dubai - United Arab Emirates', '+971 4 666 9834', 'DubaiCookies@fish.net', 'mailto:#']);
 var paris = new StoreMaker('Paris', 20, 38, 2.3, ['images/flags/flag-paris.jpg', '75093, 103 Rue de Sevres, 75006 Paris, France', '+33 6 40 36 17 85', 'ParisCookies@fish.net', 'mailto:#']);
