@@ -87,9 +87,9 @@ StoreMaker.prototype.homePageLocs = function(){
   phone.textContent = this.storeInfo[2];
   sectionInner.appendChild(phone);
   var emailAdd = document.createElement('p');
-  emailAdd.textContent = this.storeInfo[3];
   sectionInner.appendChild(emailAdd);
   var emailLink = document.createElement('a');
+  emailLink.textContent = this.storeInfo[3];
   emailLink.href = this.storeInfo[4];
   emailAdd.appendChild(emailLink);
 };

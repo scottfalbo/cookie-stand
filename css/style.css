@@ -44,22 +44,46 @@ main {
   width: 960px;
   margin: auto;
 }
- main section {
-   width: 300px;
-   float:left;
-  }
-  main section figure img {
-    width: 300px;
-  }
-  main section:nth-child(3) {
-    margin:0px 20px 0px 20px;
-    background-color: white;
-    border: 1px solid darkcyan;
-  }
-  main section:nth-child(4) {
-    background-color: white;
-    border: 1px solid darkcyan;
-  }
+main h2:first-child{
+  background-color: white;
+  padding: 10px;
+  margin: 15px 0px 15px 0px;
+  border: 1px solid darkcyan;
+  border-radius: 20px;
+  font-size: 30px;
+}
+main section {
+  width: 300px;
+  float:left;
+}
+main section p {
+  padding: 10px;
+  border: 1px solid darkcyan;
+  margin: 5px;
+  border-radius: 10px;
+}
+main section figure img {
+  width: 300px;
+}
+figcaption {
+  padding: 10px;
+  border: 1px solid darkcyan;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: white;
+}
+main section:nth-child(3) {
+  margin:0px 20px 0px 20px;
+  background-color: white;
+  border: 1px solid darkcyan;
+}
+main section:nth-child(4) p {
+  padding: 10px;
+  border: 1px solid darkcyan;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: white;
+}
 
  /* ----------- locations elements -------- */
  #locations {
@@ -95,7 +119,12 @@ main {
  #locations h2 {
    font-size: 25px;
    background-color: white;
-   padding: 5px;
+   padding: 10px;
    border: 1px solid darkcyan;
    border-radius: 15px;
  }
+
+ /* footer {
+    height: 100px;
+    background-color: lightsalmon;
+ } */
