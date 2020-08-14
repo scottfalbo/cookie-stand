@@ -59,3 +59,9 @@
 + added a method that calculates number of employees needed per hour and sent the information to a table.
 + Removed the methods from the constructor function and declared them using `.prototype`.
 + Got the curve method working.  Recycled the methods and functions by passing in a parameter of an element ID.
+
+*August 13, 2020*
++ Made and style a new home page.  
++ Created a header.css to use cross pages
++ Added locations to the main page via the JavaScript.
+  + Still working on getting the address to print on two lines.
