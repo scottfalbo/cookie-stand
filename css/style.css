@@ -1,44 +1,13 @@
+@import url("header.css");
+
 body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
   background-image: url("../images/background.jpg");
-  box-sizing: border-box;
+  background-size: auto;
+  box-sizing: border-box padding-box;
 }
 
-/* ----------- HEADER ------------ */
-header {
-  height: 100px;
-  background-color: lightsalmon;
-}
-header nav {
-  width: 960px;
-  margin: auto;
-}
-header img {
-  height: 80px;
-  float: left;
-  margin-top: 10px;
-}
-header ul {
-  float: left;
-}
-header ul li {
-  display: inline-block;
-  background-color: lightcyan;
-  margin: 35px 36px;
-  padding: 10px;
-  width: 80px;
-  border: 1px solid darkcyan;
-  border-radius: 15px;
-}
-header ul li:first-child {
-  margin-left: 30px;
-}
-header ul li a {
-  text-decoration: none;
-  font-variant: small-caps;
-  font-size: large;
-}
 /* ---------------- Main ----------------- */
 main {
   width: 960px;
@@ -72,7 +41,7 @@ figcaption {
   border-radius: 10px;
   background-color: white;
 }
-main section:nth-child(3) {
+#middle-section {
   margin:0px 20px 0px 20px;
   background-color: white;
   border: 1px solid darkcyan;
@@ -83,6 +52,26 @@ main section:nth-child(4) p {
   margin: 5px;
   border-radius: 10px;
   background-color: white;
+}
+main section article section {
+  margin-top: 20px;
+  padding: 0px;
+  border: 1px solid darkcyan;
+}
+main section article section:nth-child(odd) {
+  background-color: lightsalmon;
+}
+main section article section:nth-child(even) {
+  background-color: white;
+}
+main section article img {
+  margin: 5px 5px 5px 5px;
+  width: 60px;
+  float: right;
+}
+main section article p {
+  width: 190px;
+  float: left;
 }
 
  /* ----------- locations elements -------- */
@@ -103,7 +92,7 @@ main section:nth-child(4) p {
  }
  #locations address {
    background-color: lightsalmon;
-   font-size: larger;
+   /* font-size: large; */
    padding: 5px;
  }
  #locations p {
@@ -124,7 +113,19 @@ main section:nth-child(4) p {
    border-radius: 15px;
  }
 
- /* footer {
-    height: 100px;
+ footer {
+    height: 60px;
     background-color: lightsalmon;
- } */
+    clear: both;
+    padding: 10px;
+    line-height: 60px;
+  }
+  footer p {    
+    color: white;
+    font-size: larger;
+    text-shadow: 1px 1px black;
+    width: 300px;
+    margin: auto;
+    background-color:#e27450;
+    border-radius: 25px;
+ }
