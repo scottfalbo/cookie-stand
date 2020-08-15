@@ -183,3 +183,22 @@ function writeTimes(tableOne, tableTwo){
     trEl.appendChild(tdEl);
   }
 }
+// --------- add a new store form v.1 -----------------
+var storeForm = document.getElementById('new-store');
+
+storeForm.addEventListener('submitButton',
+  function (e) {
+    e.preventDefault();
+    var name = e.target.name.value;
+    var minCust = e.target.minCust.value;
+    var maxCust = e.target.maxCust.value;
+    var avgSales = e.target.avgSales;
+
+    var newStore = new StoreMaker(name, minCust, maxCust, avgSales, ['','','','','']);
+    newStore.name = name;
+    newStore.minCust = minCust;
+    newStore.maxCust = maxCust;
+    newStore.avgSales = avgSales;
+    writeToPage('storeOutput', 'workersPerHour');
+    writeToPage('curveCookieOutput', 'curveWorkerOutput');
+  });
