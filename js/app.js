@@ -33,9 +33,7 @@ StoreMaker.prototype.writeCookieSales = function(tableOne){
   var thEl = document.createElement('th');
   thEl.textContent = this.name;
   trEl.append(thEl);
-  if (tableOne === 'storeOutput'){
-    this.cookiesSalesPerHour();
-  }
+
   for (var i = 0; i < this.cookiesPerHour.length; i++){
     var tdEl = document.createElement('td');
     tdEl.textContent = this.cookiesPerHour[i];
@@ -104,6 +102,9 @@ new StoreMaker('Dubai', 11, 38, 3.7, ['images/flags/flag-dubai.jpg', 'Dubai Sili
 new StoreMaker('Paris', 20, 38, 2.3, ['images/flags/flag-paris.jpg', '75093, 103 Rue de Sevres, 75006 Paris, France', '+33 6 40 36 17 85', 'ParisCookies@fish.net', 'mailto:#']);
 new StoreMaker('Lima', 2, 16, 4.6, ['images/flags/flag-lima.jpg', 'Av. Petit Thouras 6657, Miraflores 15063, Peru', '+51 1 15670265', 'LimaCookies@fish.net', 'mailto:#']);
 
+for (var n = 0; n < locations.length; n++){
+  locations[n].cookiesSalesPerHour();
+}
 
 // ----------- write homepage locs
 function homePage (){  // eslint-disable-line 
@@ -220,7 +221,8 @@ function handleSubmit(event){
   // console.log(`${name}, ${minCust}, ${maxCust}, ${avgSale}`);
   // figure out how to clear the form boxes on submit
   if (newStoreValidation(validateArray) !== false){
-    new StoreMaker(name, minCust, maxCust, avgSale);
+    new StoreMaker(name, minCust, maxCust, avgSale).cookiesSalesPerHour();
+
     document.getElementById('storeOutput').innerHTML = '';
     document.getElementById('curveCookieOutput').innerHTML = '';
     document.getElementById('workersPerHour').innerHTML = '';
@@ -229,13 +231,20 @@ function handleSubmit(event){
     writeToPage('curveCookieOutput', 'curveWorkerOutput');
     document.getElementById('new-store').reset();
   } else {
-    alert('Please double check your input');
+    alert('Please double check your input and ensure all fields are filled out.');
   }
 }
 // checks to make sure the user enters something
 function newStoreValidation(checker){
   for ( var i = 0; i < checker.length; i++){
     if (checker[i] === ''){
+      return false;
+    }
+  }
+}
+function checkDuplicateName(checker){
+  for ( var i = 0; i < checker.length; i++){
+    if (checker === locations[i.name]){
       return false;
     }
   }
