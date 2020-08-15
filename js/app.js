@@ -81,8 +81,10 @@ StoreMaker.prototype.homePageLocs = function(){
   h3City.textContent = this.name;
   sectionInner.appendChild(h3City);
   var address = document.createElement('address');
-  address.textContent = this.storeInfo[1];
+  var t = document.createTextNode(this.storeInfo[1]);
+  // address.textContent = this.storeInfo[1];
   sectionInner.appendChild(address);
+  address.append(t);
   var phone = document.createElement('p');
   phone.textContent = this.storeInfo[2];
   sectionInner.appendChild(phone);
@@ -103,7 +105,7 @@ var lima = new StoreMaker('Lima', 2, 16, 4.6, ['images/flags/flag-lima.jpg', 'Av
 var locations = [seattle, tokyo, dubai, paris, lima];
 
 // ----------- write homepage locs
-function homePage (){
+function homePage (){  // eslint-disable-line 
   for (var i = 0; i < locations.length; i++){
     locations[i].homePageLocs();
   }
