@@ -5,6 +5,7 @@ function randomNumber(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+var locations = [];
 var hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
 // constructor function used to create an object for each store.
 function StoreMaker(name, minCust, maxCust, avgSale, storeInfo) {
@@ -17,6 +18,7 @@ function StoreMaker(name, minCust, maxCust, avgSale, storeInfo) {
   this.workersPerHour = [];
   //storeInfo[flag, address, phone, email, link]
   this.storeInfo = storeInfo;
+  locations.push(this);
 }
 StoreMaker.prototype.cookiesSalesPerHour = function(){
   for (var i = 0; i < hours.length; i++){
@@ -183,3 +185,53 @@ function writeTimes(tableOne, tableTwo){
     trEl.appendChild(tdEl);
   }
 }
+// --------- add a new store form v.1 -----------------
+// var storeForm = document.getElementById('new-store');
+
+// storeForm.addEventListener('submitButton',
+//   function (e) {
+//     e.preventDefault();
+//     var name = e.target.name.value;
+//     var minCust = e.target.minCust.value;
+//     var maxCust = e.target.maxCust.value;
+//     var avgSales = e.target.avgSales;
+
+//     var newStore = new StoreMaker(name, minCust, maxCust, avgSales, ['','','','','']);
+//     newStore.name = name;
+//     newStore.minCust = minCust;
+//     newStore.maxCust = maxCust;
+//     newStore.avgSales = avgSales;
+//     writeToPage('storeOutput', 'workersPerHour');
+//     writeToPage('curveCookieOutput', 'curveWorkerOutput');
+//   });
+
+// get the element
+var myForm = document.getElementById('new-store');
+
+//define Event Handler, 'event' or 'e' for parameter name is conventional
+function handleSubmit(event){
+  event.preventDefault();
+  var name = event.target.name.value;
+  var minCust = event.target.minCust.value;
+  var maxCust = event.target.maxCust.value;
+  var avgSale = event.target.avgSale.value;
+  // console.log(`${name}, ${minCust}, ${maxCust}, ${avgSale}`);
+  // figure out how to clear the form boxes on submit
+
+  //create a new store
+  new StoreMaker(name, minCust, maxCust, avgSale);
+  document.getElementById('storeOutput').innerHTML = '';
+  document.getElementById('curveCookieOutput').innerHTML = '';
+  document.getElementById('workersPerHour').innerHTML = '';
+  document.getElementById('curveWorkerOutput').innerHTML = '';
+  writeToPage('storeOutput', 'workersPerHour');
+  writeToPage('curveCookieOutput', 'curveWorkerOutput');
+  document.getElementById('new-store').reset();
+
+}
+
+//add my event listener to the element
+myForm.addEventListener('submit', handleSubmit);
+
+
+

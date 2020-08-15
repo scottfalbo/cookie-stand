@@ -1,0 +1,23 @@
+@import url("header.css");
+
+body {
+  box-sizing: border-box padding-box;
+  background-color: lightcyan;
+}
+main {
+  width: 960px;
+}
+
+main section {
+  background-color: white;
+  margin: auto;
+  width: 400px;
+}
+
+fieldset input {
+  display: block;
+  margin: auto;
+}
+fieldset label {
+  margin: auto;
+}
