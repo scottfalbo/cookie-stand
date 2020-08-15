@@ -68,4 +68,5 @@
 
 *August 15, 2020*
 + Added a form to add and print additional store data.
-  + Next tasks, validate the input and check for repeat names
++ Got my validation function working.  It intakes an array with all of the input values and uses a `for` loop to make sure they aren't empty.
+  + Next task check for repeat names
