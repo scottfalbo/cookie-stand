@@ -98,13 +98,12 @@ StoreMaker.prototype.homePageLocs = function(){
   emailAdd.appendChild(emailLink);
 };
 
-var seattle = new StoreMaker('Seattle', 23, 65, 6.3, ['images/flags/flag-seattle.jpg', '123 Whatever ST Seattle, WA 98105', '+1(206)358-1321', 'SeattleCookies@fish.net', 'mailto:#']);
-var tokyo = new StoreMaker('Tokyo', 3, 24, 1.2, ['images/flags/flag-tokyo.jpg', '6 Chrome 7-1 Sendagaya, Shibuya City, Tokyo, 121-0072, Japan', '+81 3-6561-4593', 'TokyoCookies@fish.net', 'mailto:#']);
-var dubai = new StoreMaker('Dubai', 11, 38, 3.7, ['images/flags/flag-dubai.jpg', 'Dubai Silicon OasisCedre Villas, Dubai - United Arab Emirates', '+971 4 666 9834', 'DubaiCookies@fish.net', 'mailto:#']);
-var paris = new StoreMaker('Paris', 20, 38, 2.3, ['images/flags/flag-paris.jpg', '75093, 103 Rue de Sevres, 75006 Paris, France', '+33 6 40 36 17 85', 'ParisCookies@fish.net', 'mailto:#']);
-var lima = new StoreMaker('Lima', 2, 16, 4.6, ['images/flags/flag-lima.jpg', 'Av. Petit Thouras 6657, Miraflores 15063, Peru', '+51 1 15670265', 'LimaCookies@fish.net', 'mailto:#']);
+new StoreMaker('Seattle', 23, 65, 6.3, ['images/flags/flag-seattle.jpg', '123 Whatever ST Seattle, WA 98105', '+1(206)358-1321', 'SeattleCookies@fish.net', 'mailto:#']);
+new StoreMaker('Tokyo', 3, 24, 1.2, ['images/flags/flag-tokyo.jpg', '6 Chrome 7-1 Sendagaya, Shibuya City, Tokyo, 121-0072, Japan', '+81 3-6561-4593', 'TokyoCookies@fish.net', 'mailto:#']);
+new StoreMaker('Dubai', 11, 38, 3.7, ['images/flags/flag-dubai.jpg', 'Dubai Silicon OasisCedre Villas, Dubai - United Arab Emirates', '+971 4 666 9834', 'DubaiCookies@fish.net', 'mailto:#']);
+new StoreMaker('Paris', 20, 38, 2.3, ['images/flags/flag-paris.jpg', '75093, 103 Rue de Sevres, 75006 Paris, France', '+33 6 40 36 17 85', 'ParisCookies@fish.net', 'mailto:#']);
+new StoreMaker('Lima', 2, 16, 4.6, ['images/flags/flag-lima.jpg', 'Av. Petit Thouras 6657, Miraflores 15063, Peru', '+51 1 15670265', 'LimaCookies@fish.net', 'mailto:#']);
 
-var locations = [seattle, tokyo, dubai, paris, lima];
 
 // ----------- write homepage locs
 function homePage (){  // eslint-disable-line 
@@ -211,23 +210,35 @@ var myForm = document.getElementById('new-store');
 //define Event Handler, 'event' or 'e' for parameter name is conventional
 function handleSubmit(event){
   event.preventDefault();
-  var name = event.target.name.value;
-  var minCust = event.target.minCust.value;
-  var maxCust = event.target.maxCust.value;
-  var avgSale = event.target.avgSale.value;
+  // I'm pushing the values into an array so I can send any dynamic amount of information to my newStoreValidation function.
+  var validateArray = [];
+  var name, minCust, maxCust, avgSale;
+  validateArray.push(name = event.target.name.value);
+  validateArray.push(minCust = event.target.minCust.value);
+  validateArray.push(maxCust = event.target.maxCust.value);
+  validateArray.push(avgSale = event.target.avgSale.value);
   // console.log(`${name}, ${minCust}, ${maxCust}, ${avgSale}`);
   // figure out how to clear the form boxes on submit
-
-  //create a new store
-  new StoreMaker(name, minCust, maxCust, avgSale);
-  document.getElementById('storeOutput').innerHTML = '';
-  document.getElementById('curveCookieOutput').innerHTML = '';
-  document.getElementById('workersPerHour').innerHTML = '';
-  document.getElementById('curveWorkerOutput').innerHTML = '';
-  writeToPage('storeOutput', 'workersPerHour');
-  writeToPage('curveCookieOutput', 'curveWorkerOutput');
-  document.getElementById('new-store').reset();
-
+  if (newStoreValidation(validateArray) !== false){
+    new StoreMaker(name, minCust, maxCust, avgSale);
+    document.getElementById('storeOutput').innerHTML = '';
+    document.getElementById('curveCookieOutput').innerHTML = '';
+    document.getElementById('workersPerHour').innerHTML = '';
+    document.getElementById('curveWorkerOutput').innerHTML = '';
+    writeToPage('storeOutput', 'workersPerHour');
+    writeToPage('curveCookieOutput', 'curveWorkerOutput');
+    document.getElementById('new-store').reset();
+  } else {
+    alert('Please double check your input');
+  }
+}
+// checks to make sure the user enters something
+function newStoreValidation(checker){
+  for ( var i = 0; i < checker.length; i++){
+    if (checker[i] === ''){
+      return false;
+    }
+  }
 }
 
 //add my event listener to the element
