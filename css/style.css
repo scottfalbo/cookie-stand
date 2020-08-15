@@ -113,20 +113,3 @@ main section article p {
    border: 1px solid darkcyan;
    border-radius: 15px;
  }
-
- footer {
-    height: 60px;
-    background-color: lightsalmon;
-    clear: both;
-    padding: 10px;
-    line-height: 60px;
-  }
-  footer p {    
-    color: white;
-    font-size: larger;
-    text-shadow: 1px 1px black;
-    width: 300px;
-    margin: auto;
-    background-color:#e27450;
-    border-radius: 25px;
- }

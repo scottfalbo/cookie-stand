@@ -2,6 +2,8 @@
 header {
   height: 100px;
   background-color: lightsalmon;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
 }
 header nav {
   width: 960px;
@@ -31,4 +33,23 @@ header ul li a {
   text-decoration: none;
   font-variant: small-caps;
   font-size: large;
+}
+
+footer {
+  height: 60px;
+  background-color: lightsalmon;
+  clear: both;
+  padding: 10px;
+  line-height: 60px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+}
+footer p {    
+  color: white;
+  font-size: larger;
+  text-shadow: 1px 1px black;
+  width: 300px;
+  margin: auto;
+  background-color:#e27450;
+  border-radius: 25px;
 }
