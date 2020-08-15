@@ -65,3 +65,7 @@
 + Created a header.css to use cross pages
 + Added locations to the main page via the JavaScript.
   + Still working on getting the address to print on two lines.
+
+*August 15, 2020*
++ Added a form to add and print additional store data.
+  + Next tasks, validate the input and check for repeat names

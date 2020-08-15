@@ -25,6 +25,8 @@ main h2:first-child{
 main section {
   width: 300px;
   float:left;
+  background-color: lightcyan;
+  border-radius: 15px;
 }
 main section p {
   padding: 10px;
