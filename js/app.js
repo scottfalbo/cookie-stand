@@ -19,7 +19,7 @@ function StoreMaker(name, minCust, maxCust, avgSale, storeInfo) {
   this.workersPerHour = [];
   this.curveWorkersPerHour = [];
   this.curveTotalCookies = 0;
-  //storeInfo[flag, address, phone, email, link]
+  //storeInfo[address, phone, email, link]
   this.storeInfo = storeInfo;
   locations.push(this);
 }
@@ -102,34 +102,31 @@ StoreMaker.prototype.homePageLocs = function(){
   var sectionMain = document.getElementById('locations');
   var sectionInner = document.createElement('section');
   sectionMain.append(sectionInner);
-  var imgFlag = document.createElement('img');
-  imgFlag.src = this.storeInfo[0];
-  sectionInner.appendChild(imgFlag);
   var h3City = document.createElement('h3');
   h3City.textContent = this.name;
   sectionInner.appendChild(h3City);
   var address = document.createElement('address');
-  var t = document.createTextNode(this.storeInfo[1]);
+  var t = document.createTextNode(this.storeInfo[0]);
   // address.textContent = this.storeInfo[1];
   sectionInner.appendChild(address);
   address.append(t);
   var phone = document.createElement('p');
-  phone.textContent = this.storeInfo[2];
+  phone.textContent = this.storeInfo[1];
   sectionInner.appendChild(phone);
   var emailAdd = document.createElement('p');
   sectionInner.appendChild(emailAdd);
   var emailLink = document.createElement('a');
-  emailLink.textContent = this.storeInfo[3];
-  emailLink.href = this.storeInfo[4];
+  emailLink.textContent = this.storeInfo[2];
+  emailLink.href = this.storeInfo[3];
   emailAdd.appendChild(emailLink);
 };
 
 // make the original 5 store with the constructor
-new StoreMaker('Seattle', 23, 65, 6.3, ['images/flags/flag-seattle.jpg', '123 Whatever ST Seattle, WA 98105', '+1(206)358-1321', 'SeattleCookies@fish.net', 'mailto:#']);
-new StoreMaker('Tokyo', 3, 24, 1.2, ['images/flags/flag-tokyo.jpg', '6 Chrome 7-1 Sendagaya, Shibuya City, Tokyo, 121-0072, Japan', '+81 3-6561-4593', 'TokyoCookies@fish.net', 'mailto:#']);
-new StoreMaker('Dubai', 11, 38, 3.7, ['images/flags/flag-dubai.jpg', 'Dubai Silicon OasisCedre Villas, Dubai - United Arab Emirates', '+971 4 666 9834', 'DubaiCookies@fish.net', 'mailto:#']);
-new StoreMaker('Paris', 20, 38, 2.3, ['images/flags/flag-paris.jpg', '75093, 103 Rue de Sevres, 75006 Paris, France', '+33 6 40 36 17 85', 'ParisCookies@fish.net', 'mailto:#']);
-new StoreMaker('Lima', 2, 16, 4.6, ['images/flags/flag-lima.jpg', 'Av. Petit Thouras 6657, Miraflores 15063, Peru', '+51 1 15670265', 'LimaCookies@fish.net', 'mailto:#']);
+new StoreMaker('Seattle', 23, 65, 6.3, ['123 Whatever ST Seattle, WA 98105', '+1(206)358-1321', 'SeattleCookies@fish.net', 'mailto:#']);
+new StoreMaker('Tokyo', 3, 24, 1.2, ['6 Chrome 7-1 Sendagaya, Shibuya City, Tokyo, 121-0072, Japan', '+81 3-6561-4593', 'TokyoCookies@fish.net', 'mailto:#']);
+new StoreMaker('Dubai', 11, 38, 3.7, ['Dubai Silicon OasisCedre Villas, Dubai - United Arab Emirates', '+971 4 666 9834', 'DubaiCookies@fish.net', 'mailto:#']);
+new StoreMaker('Paris', 20, 38, 2.3, ['75093, 103 Rue de Sevres, 75006 Paris, France', '+33 6 40 36 17 85', 'ParisCookies@fish.net', 'mailto:#']);
+new StoreMaker('Lima', 2, 16, 4.6, ['Av. Petit Thouras 6657, Miraflores 15063, Peru', '+51 1 15670265', 'LimaCookies@fish.net', 'mailto:#']);
 
 for (var n = 0; n < locations.length; n++){
   locations[n].cookiesSalesPerHour();
@@ -236,18 +233,21 @@ function handleSubmit(event){
   event.preventDefault();
   // I'm pushing the values into an array so I can send any dynamic amount of information to my newStoreValidation function.
   var validateArray = [];
-  var name, minCust, maxCust, avgSale;
+  var storeInfo = [];
+  var name, minCust, maxCust, avgSale, address, phone, email;
   validateArray.push(name = event.target.name.value);
   validateArray.push(minCust = event.target.minCust.value);
   validateArray.push(maxCust = event.target.maxCust.value);
   validateArray.push(avgSale = event.target.avgSale.value);
-  // console.log(`${name}, ${minCust}, ${maxCust}, ${avgSale}`);
-  // figure out how to clear the form boxes on submit
+  storeInfo.push(address = event.target.address.value);
+  storeInfo.push(phone = event.target.phone.value);
+  storeInfo.push(email = event.target.email.value);
+  validateArray.push(storeInfo);
   if (newStoreValidation(validateArray) !== false && notANumber(name) !== false){
-    //if not duplicate
-    checkDuplicateName(validateArray);
     new StoreMaker(name, minCust, maxCust, avgSale);
     locations[locations.length-1].cookiesSalesPerHour();
+    // locations[locations.length-1].homePageLocs();
+    //can't do that, the data isn;t stored anywhere and its on a different HTML
     document.getElementById('storeOutput').innerHTML = '';
     document.getElementById('curveCookieOutput').innerHTML = '';
     document.getElementById('workersPerHour').innerHTML = '';
@@ -256,7 +256,7 @@ function handleSubmit(event){
     writeToPage('curveCookieOutput', 'curveWorkerOutput');
     document.getElementById('new-store').reset();
   } else {
-    alert('Please double check your input and ensure all fields are filled out with the proper information.');
+    alert('Please double check your input and ensure all fields are filled out with the proper information.  please do not enter a number as a store name.');
   }
 }
 function notANumber(checker){
@@ -273,13 +273,14 @@ function newStoreValidation(checker){
     }
   }
 }
-function checkDuplicateName(checker){ // eslint-disable-line 
-  for ( var i = 0; i < checker.length; i++){
-    if (checker[0] === locations[i][0]){
-      console.log('hello');
-    }
-  }
-}
+// function checkDuplicateName(checker){ // eslint-disable-line 
+//   console.log('proof of life');
+//   for ( var i = 0; i < checker.length; i++){
+//     if (checker[0] === locations[i][0]){
+//       console.log('hello');
+//     }
+//   }
+// }
 
 //add my event listener to the element
 myForm.addEventListener('submit', handleSubmit);

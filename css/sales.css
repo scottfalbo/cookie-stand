@@ -52,3 +52,32 @@ table > tr > th {
   text-align: left;
   vertical-align: bottom;
 }
+
+main section:nth-child(2) {
+  background-color: white;
+  border: 1px solid darkcyan;
+  text-align: left;
+  width: 200px;
+  padding: 10px;
+}
+main section:nth-child(2) input {
+  display: block;
+}
+#new-store legend {
+  background-color: lightcyan;
+  border: 1px dotted cyan;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+#new-store input:nth-child(3) {
+  margin-top: 10px;
+}
+
+main section:nth-child(3) {
+  background-color: white;
+  border: 1px solid darkcyan;
+  text-align: left;
+  width: 200px;
+  padding: 10px;
+}
