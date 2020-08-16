@@ -47,7 +47,7 @@ StoreMaker.prototype.writeCookieSales = function(tableOne){
     trEl.appendChild(tdEl);
   }
   if (tableOne === 'curveCookieOutput'){
-    for (var i = 0; i < this.curveCookiesPerHour.length; i++){
+    for (var i = 0; i < this.curveCookiesPerHour.length; i++){ // eslint-disable-line 
       tdEl = document.createElement('td');
       tdEl.textContent = this.curveCookiesPerHour[i];
       trEl.appendChild(tdEl);
@@ -86,7 +86,7 @@ StoreMaker.prototype.staffing = function(tableTwo){
     }
   }
   if (tableTwo === 'curveWorkerOutput'){
-    for (var i = 0; i < this.cookiesPerHour.length; i++){
+    for (var i = 0; i < this.cookiesPerHour.length; i++){  // eslint-disable-line 
       this.curveWorkersPerHour[i] = Math.ceil(this.curveCookiesPerHour[i]/20);
       if (this.curveWorkersPerHour[i] < 2){
         this.curveWorkersPerHour[i] = 2;
@@ -97,6 +97,7 @@ StoreMaker.prototype.staffing = function(tableTwo){
     }
   }
 };
+// this builds and sends the home page location sections to the DOM
 StoreMaker.prototype.homePageLocs = function(){
   var sectionMain = document.getElementById('locations');
   var sectionInner = document.createElement('section');
@@ -123,6 +124,7 @@ StoreMaker.prototype.homePageLocs = function(){
   emailAdd.appendChild(emailLink);
 };
 
+// make the original 5 store with the constructor
 new StoreMaker('Seattle', 23, 65, 6.3, ['images/flags/flag-seattle.jpg', '123 Whatever ST Seattle, WA 98105', '+1(206)358-1321', 'SeattleCookies@fish.net', 'mailto:#']);
 new StoreMaker('Tokyo', 3, 24, 1.2, ['images/flags/flag-tokyo.jpg', '6 Chrome 7-1 Sendagaya, Shibuya City, Tokyo, 121-0072, Japan', '+81 3-6561-4593', 'TokyoCookies@fish.net', 'mailto:#']);
 new StoreMaker('Dubai', 11, 38, 3.7, ['images/flags/flag-dubai.jpg', 'Dubai Silicon OasisCedre Villas, Dubai - United Arab Emirates', '+971 4 666 9834', 'DubaiCookies@fish.net', 'mailto:#']);
@@ -154,7 +156,7 @@ function writeToPage(tableOne, tableTwo){  // eslint-disable-line
   }
   totalTotals(tableOne);
 }
-
+// function to calculate and send to the DOM the daily totals of all stores and the grand total for the day
 function totalTotals (tableOne){
   var tableEl = document.getElementById(tableOne);
   var trEl = document.createElement('tr');
@@ -179,8 +181,8 @@ function totalTotals (tableOne){
     }
   }
   if (tableOne === 'curveCookieOutput'){
-    for (var j = 0; j < curveTotals[0].length; j++){
-      for (var k = 0; k < curveTotals.length; k++){
+    for (var j = 0; j < curveTotals[0].length; j++){  // eslint-disable-line 
+      for (var k = 0; k < curveTotals.length; k++){   // eslint-disable-line 
         hourlyTotal[j] += (curveTotals[k][j]);
         grandTotal += (curveTotals[k][j]);
       }
@@ -242,6 +244,8 @@ function handleSubmit(event){
   // console.log(`${name}, ${minCust}, ${maxCust}, ${avgSale}`);
   // figure out how to clear the form boxes on submit
   if (newStoreValidation(validateArray) !== false && notANumber(name) !== false){
+    //if not duplicate
+    checkDuplicateName(validateArray);
     new StoreMaker(name, minCust, maxCust, avgSale);
     locations[locations.length-1].cookiesSalesPerHour();
     document.getElementById('storeOutput').innerHTML = '';
@@ -269,13 +273,13 @@ function newStoreValidation(checker){
     }
   }
 }
-// function checkDuplicateName(checker){
-//   for ( var i = 0; i < checker.length; i++){
-//     if (checker === locations[i.name]){
-//       return false;
-//     }
-//   }
-// }
+function checkDuplicateName(checker){ // eslint-disable-line 
+  for ( var i = 0; i < checker.length; i++){
+    if (checker[0] === locations[i][0]){
+      console.log('hello');
+    }
+  }
+}
 
 //add my event listener to the element
 myForm.addEventListener('submit', handleSubmit);
