@@ -73,3 +73,6 @@
 
 + The way the functions were nested before every time a new store was created the data for the current ones would change.  I refactored a bunch of stuff so the call order is correct and the current data stays the same as new stores are added.
 
++ Styled the formed a little bit.  
++ Added input lines for homepage info but couldn't do anything with that information because I do not know how to store it or sent it to another HTML page yet.  
+  + I turned of the content checker for the homepage info lines since the data isn't required.
