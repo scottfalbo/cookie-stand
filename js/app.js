@@ -274,6 +274,7 @@ function newStoreValidation(checker){
   }
 }
 function checkDuplicateName(checker){ // eslint-disable-line 
+  console.log('proof of life');
   for ( var i = 0; i < checker.length; i++){
     if (checker[0] === locations[i][0]){
       console.log('hello');
