@@ -69,4 +69,7 @@
 *August 15, 2020*
 + Added a form to add and print additional store data.
 + Got my validation function working.  It intakes an array with all of the input values and uses a `for` loop to make sure they aren't empty.
-  + Next task check for repeat names
++ Wrote a small function disallowing numbers to be entered as the name.
+
++ The way the functions were nested before every time a new store was created the data for the current ones would change.  I refactored a bunch of stuff so the call order is correct and the current data stays the same as new stores are added.
+

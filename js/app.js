@@ -14,8 +14,11 @@ function StoreMaker(name, minCust, maxCust, avgSale, storeInfo) {
   this.maxCust = maxCust;
   this.avgSale = avgSale;
   this.cookiesPerHour = [];
+  this.curveCookiesPerHour = [];
   this.totalCookies = 0;
   this.workersPerHour = [];
+  this.curveWorkersPerHour = [];
+  this.curveTotalCookies = 0;
   //storeInfo[flag, address, phone, email, link]
   this.storeInfo = storeInfo;
   locations.push(this);
@@ -34,24 +37,33 @@ StoreMaker.prototype.writeCookieSales = function(tableOne){
   thEl.textContent = this.name;
   trEl.append(thEl);
   if (tableOne === 'storeOutput'){
-    this.cookiesSalesPerHour();
-  }
-  for (var i = 0; i < this.cookiesPerHour.length; i++){
-    var tdEl = document.createElement('td');
-    tdEl.textContent = this.cookiesPerHour[i];
+    for (var i = 0; i < this.cookiesPerHour.length; i++){
+      var tdEl = document.createElement('td');
+      tdEl.textContent = this.cookiesPerHour[i];
+      trEl.appendChild(tdEl);
+    }
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.totalCookies;
     trEl.appendChild(tdEl);
   }
-  tdEl = document.createElement('td');
-  tdEl.textContent = this.totalCookies;
-  trEl.appendChild(tdEl);
+  if (tableOne === 'curveCookieOutput'){
+    for (var i = 0; i < this.curveCookiesPerHour.length; i++){ // eslint-disable-line 
+      tdEl = document.createElement('td');
+      tdEl.textContent = this.curveCookiesPerHour[i];
+      trEl.appendChild(tdEl);
+    }
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.curveTotalCookies;
+    trEl.appendChild(tdEl);
+  }
 };
 StoreMaker.prototype.controlCurve = function(){
   var curve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4];
-  this.totalCookies = 0;
+  this.curveTotalCookies = 0;
   for (var i = 0; i < curve.length; i++){
-    this.workersPerHour[i] = Math.ceil(this.workersPerHour[i]*curve[i]);
-    this.cookiesPerHour[i] = Math.ceil(this.cookiesPerHour[i]*curve[i]);
-    this.totalCookies += this.cookiesPerHour[i];
+    this.curveWorkersPerHour[i] = Math.ceil(this.workersPerHour[i]*curve[i]);
+    this.curveCookiesPerHour[i] = Math.ceil(this.cookiesPerHour[i]*curve[i]);
+    this.curveTotalCookies += this.curveCookiesPerHour[i];
     // console.log(this.cookiesPerHour[i]);
   }
 };
@@ -62,16 +74,30 @@ StoreMaker.prototype.staffing = function(tableTwo){
   var thEl = document.createElement('th');
   thEl.textContent = this.name;
   trEl.append(thEl);
-  for (var i = 0; i < this.cookiesPerHour.length; i++){
-    this.workersPerHour[i] = Math.ceil(this.cookiesPerHour[i]/20);
-    if (this.workersPerHour[i] < 2){
-      this.workersPerHour[i] = 2;
+  if (tableTwo === 'workersPerHour'){
+    for (var i = 0; i < this.cookiesPerHour.length; i++){
+      this.workersPerHour[i] = Math.ceil(this.cookiesPerHour[i]/20);
+      if (this.workersPerHour[i] < 2){
+        this.workersPerHour[i] = 2;
+      }
+      var tdEl = document.createElement('td');
+      tdEl.textContent = this.workersPerHour[i];
+      trEl.appendChild(tdEl);
     }
-    var tdEl = document.createElement('td');
-    tdEl.textContent = this.workersPerHour[i];
-    trEl.appendChild(tdEl);
+  }
+  if (tableTwo === 'curveWorkerOutput'){
+    for (var i = 0; i < this.cookiesPerHour.length; i++){  // eslint-disable-line 
+      this.curveWorkersPerHour[i] = Math.ceil(this.curveCookiesPerHour[i]/20);
+      if (this.curveWorkersPerHour[i] < 2){
+        this.curveWorkersPerHour[i] = 2;
+      }
+      tdEl = document.createElement('td');
+      tdEl.textContent = this.curveWorkersPerHour[i];
+      trEl.appendChild(tdEl);
+    }
   }
 };
+// this builds and sends the home page location sections to the DOM
 StoreMaker.prototype.homePageLocs = function(){
   var sectionMain = document.getElementById('locations');
   var sectionInner = document.createElement('section');
@@ -98,12 +124,16 @@ StoreMaker.prototype.homePageLocs = function(){
   emailAdd.appendChild(emailLink);
 };
 
+// make the original 5 store with the constructor
 new StoreMaker('Seattle', 23, 65, 6.3, ['images/flags/flag-seattle.jpg', '123 Whatever ST Seattle, WA 98105', '+1(206)358-1321', 'SeattleCookies@fish.net', 'mailto:#']);
 new StoreMaker('Tokyo', 3, 24, 1.2, ['images/flags/flag-tokyo.jpg', '6 Chrome 7-1 Sendagaya, Shibuya City, Tokyo, 121-0072, Japan', '+81 3-6561-4593', 'TokyoCookies@fish.net', 'mailto:#']);
 new StoreMaker('Dubai', 11, 38, 3.7, ['images/flags/flag-dubai.jpg', 'Dubai Silicon OasisCedre Villas, Dubai - United Arab Emirates', '+971 4 666 9834', 'DubaiCookies@fish.net', 'mailto:#']);
 new StoreMaker('Paris', 20, 38, 2.3, ['images/flags/flag-paris.jpg', '75093, 103 Rue de Sevres, 75006 Paris, France', '+33 6 40 36 17 85', 'ParisCookies@fish.net', 'mailto:#']);
 new StoreMaker('Lima', 2, 16, 4.6, ['images/flags/flag-lima.jpg', 'Av. Petit Thouras 6657, Miraflores 15063, Peru', '+51 1 15670265', 'LimaCookies@fish.net', 'mailto:#']);
 
+for (var n = 0; n < locations.length; n++){
+  locations[n].cookiesSalesPerHour();
+}
 
 // ----------- write homepage locs
 function homePage (){  // eslint-disable-line 
@@ -126,7 +156,7 @@ function writeToPage(tableOne, tableTwo){  // eslint-disable-line
   }
   totalTotals(tableOne);
 }
-
+// function to calculate and send to the DOM the daily totals of all stores and the grand total for the day
 function totalTotals (tableOne){
   var tableEl = document.getElementById(tableOne);
   var trEl = document.createElement('tr');
@@ -135,15 +165,27 @@ function totalTotals (tableOne){
   thEl.textContent = 'Totals';
   trEl.appendChild(thEl);
   var allTotals = [];
+  var curveTotals = [];
   for (var i = 0; i < locations.length; i++){
     allTotals[i] = locations[i].cookiesPerHour;
+    curveTotals[i] = locations[i].curveCookiesPerHour;
   }
   var hourlyTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   var grandTotal = 0;
-  for (var j = 0; j < allTotals[0].length; j++){
-    for (var k = 0; k < allTotals.length; k++){
-      hourlyTotal[j] += (allTotals[k][j]);
-      grandTotal += (allTotals[k][j]);
+  if (tableOne === 'storeOutput'){
+    for (var j = 0; j < allTotals[0].length; j++){
+      for (var k = 0; k < allTotals.length; k++){
+        hourlyTotal[j] += (allTotals[k][j]);
+        grandTotal += (allTotals[k][j]);
+      }
+    }
+  }
+  if (tableOne === 'curveCookieOutput'){
+    for (var j = 0; j < curveTotals[0].length; j++){  // eslint-disable-line 
+      for (var k = 0; k < curveTotals.length; k++){   // eslint-disable-line 
+        hourlyTotal[j] += (curveTotals[k][j]);
+        grandTotal += (curveTotals[k][j]);
+      }
     }
   }
   for (var l = 0; l < hourlyTotal.length; l++){
@@ -184,26 +226,8 @@ function writeTimes(tableOne, tableTwo){
     trEl.appendChild(tdEl);
   }
 }
-// --------- add a new store form v.1 -----------------
-// var storeForm = document.getElementById('new-store');
 
-// storeForm.addEventListener('submitButton',
-//   function (e) {
-//     e.preventDefault();
-//     var name = e.target.name.value;
-//     var minCust = e.target.minCust.value;
-//     var maxCust = e.target.maxCust.value;
-//     var avgSales = e.target.avgSales;
-
-//     var newStore = new StoreMaker(name, minCust, maxCust, avgSales, ['','','','','']);
-//     newStore.name = name;
-//     newStore.minCust = minCust;
-//     newStore.maxCust = maxCust;
-//     newStore.avgSales = avgSales;
-//     writeToPage('storeOutput', 'workersPerHour');
-//     writeToPage('curveCookieOutput', 'curveWorkerOutput');
-//   });
-
+//-------- form stuff- --------------
 // get the element
 var myForm = document.getElementById('new-store');
 
@@ -219,8 +243,11 @@ function handleSubmit(event){
   validateArray.push(avgSale = event.target.avgSale.value);
   // console.log(`${name}, ${minCust}, ${maxCust}, ${avgSale}`);
   // figure out how to clear the form boxes on submit
-  if (newStoreValidation(validateArray) !== false){
+  if (newStoreValidation(validateArray) !== false && notANumber(name) !== false){
+    //if not duplicate
+    checkDuplicateName(validateArray);
     new StoreMaker(name, minCust, maxCust, avgSale);
+    locations[locations.length-1].cookiesSalesPerHour();
     document.getElementById('storeOutput').innerHTML = '';
     document.getElementById('curveCookieOutput').innerHTML = '';
     document.getElementById('workersPerHour').innerHTML = '';
@@ -229,7 +256,13 @@ function handleSubmit(event){
     writeToPage('curveCookieOutput', 'curveWorkerOutput');
     document.getElementById('new-store').reset();
   } else {
-    alert('Please double check your input');
+    alert('Please double check your input and ensure all fields are filled out with the proper information.');
+  }
+}
+function notANumber(checker){
+  if (isNaN(checker) === false ){
+    console.log(checker);
+    return false;
   }
 }
 // checks to make sure the user enters something
@@ -237,6 +270,13 @@ function newStoreValidation(checker){
   for ( var i = 0; i < checker.length; i++){
     if (checker[i] === ''){
       return false;
+    }
+  }
+}
+function checkDuplicateName(checker){ // eslint-disable-line 
+  for ( var i = 0; i < checker.length; i++){
+    if (checker[0] === locations[i][0]){
+      console.log('hello');
     }
   }
 }
