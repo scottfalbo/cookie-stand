@@ -76,3 +76,6 @@
 + Styled the formed a little bit.  
 + Added input lines for homepage info but couldn't do anything with that information because I do not know how to store it or sent it to another HTML page yet.  
   + I turned of the content checker for the homepage info lines since the data isn't required.
+
+*August 18th, 2020*
++ Refactored and reduced the script from 287 to 240 lines by implementing a function for the element creation.
