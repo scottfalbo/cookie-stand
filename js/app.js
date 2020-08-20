@@ -16,11 +16,11 @@ function StoreMaker(name, minCust, maxCust, avgSale, storeInfo) {
   this.maxCust = maxCust;
   this.avgSale = avgSale;
   this.cookiesPerHour = [];
-  this.curveCookiesPerHour = [];
   this.totalCookies = 0;
+  this.curveCookiesPerHour = [];
+  this.curveTotalCookies = 0;
   this.workersPerHour = [];
   this.curveWorkersPerHour = [];
-  this.curveTotalCookies = 0;
   //storeInfo[address, phone, email, link]
   this.storeInfo = storeInfo;
   locations.push(this);
